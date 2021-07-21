@@ -1,0 +1,134 @@
+<div class="modal fade" id="addAmountModal" tabindex="-1" role="dialog" aria-labelledby="addAmountModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addAmountModalLabel">Add Amount</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- <form [formGroup]="AddAmountForm" (ngSubmit)="onSubmit(buttonType)"> -->
+      <form [formGroup]="AddAmountForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name">Name</label>
+            <input id="name" class="form-control" type="text" formControlName="adName" />
+          </div>
+          <div class="mb-3">
+            <label for="address">Address</label>
+            <input id="address" class="form-control" type="text" formControlName="adAddress" />
+          </div>
+          <div class="mb-3">
+            <label for="amount">Amount</label>
+            <input id="amount" class="form-control" type="text" formControlName="adAmount" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add Amount</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="updateAmountModal" tabindex="-1" role="dialog" aria-labelledby="updateAmountModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateAmountModalLabel">Add/Remove Amount</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- <form [formGroup]="updateAmountForm" (ngSubmit)="onSubmit(buttonType)"> -->
+      <!-- <form>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name">Date</label>
+            <input id="name" class="form-control" type="text" formControlName="upDate" />
+          </div>
+          <div class="mb-3">
+            <label for="address">Function Name</label>
+            <input id="address" class="form-control" type="text" formControlName="upFunction" />
+          </div>
+
+          <div class="mb-3">
+            <label for="address">Amount Type</label>
+            <input id="address" class="form-control" type="text" formControlName="AmountType" />
+          </div>
+          <div class="mb-3">
+            <label for="address">Cash Mode</label>
+            <select class="form-control" #cashMode (change)="changedVal(cashMode.value)">
+              <option>Select Cash Mode</option>
+              <option value="Credit">Credit</option>
+              <option value="Debit">Debit</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="amount">Amount</label>
+            <input id="amount" class="form-control" type="text" formControlName="upAmount" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add Amount</button>
+        </div>
+      </form> -->
+    </div>
+  </div>
+</div>
+<h5 class="my-3">All Amounts
+  <button type="button" class="btn btn-primary float-right px-4 mb-3" data-toggle="modal"
+    data-target="#addAmountModal">Add</button>
+  <button type="button" class="btn btn-primary float-right px-4 mb-3 mr-2" (click)="gotoBack()">Back</button>
+  <button type="button" title="goto Home" class="btn btn-primary btn-link px-2 mr-2 float-right" (click)="gotoHome()"
+    style="color: #fff;"><i class="fa fa-home" aria-hidden="true"></i>
+  </button>
+</h5>
+<div class="table-responsive">
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th width="10">#</th>
+        <th width="35">Address</th>
+        <th width="35">Name</th>
+        <th width="10">Amount (Rs)</th>
+        <th width="10" class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of allAmountList">
+        <td>{{data._id}}</td>
+        <td>{{data.Address}}</td>
+        <td><a (click)="viewDetail(data._id)" class="font-weight-bold">{{data.Name}}</a></td>
+        <td>{{data.Amount}}</td>
+        <td class="text-center">
+          <button type="button" title="Add/Remove Amount" class="btn btn-link px-2" data-toggle="modal"
+            data-target="#updateAmountModal" (click)="updateAmount(data)"><i class="fa fa-plus" aria-hidden="true"></i>
+          </button>
+          <button type="button" title="Edit" class="btn btn-link px-2 ml-2" (click)="edit(data)"><i class="fa fa-pencil"
+              aria-hidden="true"></i>
+          </button>
+          <button type="button" title="View Details" class="btn btn-link px-2 ml-2" (click)="viewDetail(data._id)"><i
+              class="fa fa-eye" aria-hidden="true"></i>
+          </button>
+
+          <button type="button" title="Remove from List" class="btn btn-link px-2 ml-2"><i class="fa fa-trash-o"
+              aria-hidden="true"></i>
+          </button>
+
+          <!-- <button (click) = "deleteRow(i)"><i class="fa fa-trash"></i></button> -->
+        </td>
+      </tr>
+      <tr *ngIf="allAmountList.length == 0">
+        <td colspan="5" class="text-center">
+          <h6 class="p-5">No data found</h6>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <fa-icon [icon]="faCoffee"></fa-icon> -->
+
+</div>

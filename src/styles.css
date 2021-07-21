@@ -1,1 +1,83 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+a {
+  cursor: pointer;
+  color: #212529;
+}
+
+a:hover {
+  color: #1c9241;
+}
+
+a,
+a:focus,
+a:hover,
+.btn:focus,
+.btn:hover,
+.form-control:focus {
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none;
+}
+
+table .btn {
+  padding: 3px 0;
+  font-size: inherit;
+  border: 1px solid #ccc;
+  color: #888;
+}
+
+.table-sm td,
+.table-sm th {
+  padding: .5rem;
+}
+
+.table-sm td,
+.table-sm td a {
+  font-size: 12px;
+}
+
+form,
+.form-control,
+.btn,
+a {
+  font-size: 13px;
+}
+
+.btn-primary {
+  background-color: #2db156;
+  border-color: #2db156;
+}
+
+.btn-primary:hover,
+.btn-primary.focus,
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show>.btn-primary.dropdown-toggle {
+  background-color: #1c9241;
+  border-color: #1c9241;
+  box-shadow: none;
+}
+
+.btn-link:hover {
+  color: #444;
+}
+
+.landing-block .card {
+  border-color: #ddd;
+  border-radius: 20px;
+  box-shadow: 0px ​0px 6px -3px rgba(0, 0, 0, 0.6);
+  color: #444;
+}
+
+.landing-block .card:hover {
+  box-shadow: 0px ​0px 6px -3px rgba(0, 0, 0, 0.6);
+  color: #1c9241;
+  border-color: #1c9241;
+  cursor: pointer;
+}

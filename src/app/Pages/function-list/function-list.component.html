@@ -1,0 +1,156 @@
+<div class="modal fade" id="addFunctionModal" tabindex="-1" role="dialog" aria-labelledby="addFunctionModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addFunctionModalLabel">Create Function</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- <form [formGroup]="addFunctionForm" (ngSubmit)="onSubmit(buttonType)"> -->
+      <form [formGroup]="addFunctionForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="fname">Function Name</label>
+            <input id="fname" class="form-control" type="text" formControlName="adFuncName" />
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="fplace">Place</label>
+                <input id="fplace" class="form-control" type="text" formControlName="adFuncPlace" />
+              </div>
+              <div class="mb-3">
+                <label for="date">Date</label>
+                <input id="date" class="form-control" type="text" />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="time">Status</label>
+                <select class="form-control" #EvMode (change)="changeEvVal(EvMode.value)">
+                  <option>Select Event Status</option>
+                  <option value="2">Completed</option>
+                  <option value="1">Booked</option>
+                  <option value="0">Waiting</option>
+                  <option value="-1">Cancelled</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label for="time">Time</label>
+                <input id="time" class="form-control" type="text" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Create Function</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="updateFunctionModal" tabindex="-1" role="dialog" aria-labelledby="updateFunctionModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateFunctionModalLabel">Modify Event</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!-- <form [formGroup]="updateFunctionForm" (ngSubmit)="onSubmit(buttonType)"> -->
+      <!-- <form>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name">Date</label>
+            <input id="name" class="form-control" type="text" formControlName="upDate" />
+          </div>
+          <div class="mb-3">
+            <label for="address">Function Name</label>
+            <input id="address" class="form-control" type="text" formControlName="upFunction" />
+          </div>
+
+          <div class="mb-3">
+            <label for="address">Amount Type</label>
+            <input id="address" class="form-control" type="text" formControlName="AmountType" />
+          </div>
+          <div class="mb-3">
+            <label for="address">Cash Mode</label>
+            <select class="form-control" #cashMode (change)="changedVal(cashMode.value)">
+              <option>Select Cash Mode</option>
+              <option value="Credit">Credit</option>
+              <option value="Debit">Debit</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="amount">Amount</label>
+            <input id="amount" class="form-control" type="text" formControlName="upAmount" />
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add Amount</button>
+        </div>
+      </form> -->
+    </div>
+  </div>
+</div>
+<h5 class="my-3">All Functions
+    <button type="button" class="btn btn-primary float-right px-4 mb-3" data-toggle="modal"
+      data-target="#addFunctionModal">Create Function</button>
+      <button type="button" class="btn btn-primary float-right px-4 mb-3 mr-2" (click)="gotoAll()">All List</button>
+      <button type="button" title="goto Home" class="btn btn-primary btn-link px-2 mr-2 float-right" (click)="gotoHome()" style="color: #fff;"><i class="fa fa-home" aria-hidden="true"></i>
+    </button>
+</h5>
+<div class="table-responsive">
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <!-- <th width="7">#</th> -->
+        <th width="35">Function Name</th>
+        <th width="35">Place</th>
+        <th width="10">Date</th>
+        <th width="10">Status</th>
+        <th width="13" class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of allEventList">
+        <!-- <td>{{data._id}}</td> -->
+        <td><a (click)="viewAllFunc(data.FunctionName)" class="font-weight-bold">{{data.FunctionName}}</a></td>
+        <td><a (click)="viewList(data.FunctionAddress)" class="font-weight-bold">{{data.FunctionAddress}}</a></td>
+        <td>{{data.Date}}</td>
+        <td>
+          <span class="label label-danger" *ngIf="data.Status==-1">Cancelled</span>
+          <span class="label label-primary" *ngIf="data.Status==0">Booked</span>
+          <span class="label label-success" *ngIf="data.Status==1">Completed</span>
+          <span class="label label-warning" *ngIf="data.Status==2">Waiting</span>
+        </td>
+        <td class="text-center">
+          <button type="button" title="Edit" class="btn btn-link px-2 ml-2"><i class="fa fa-pencil"
+              aria-hidden="true"></i>
+          </button>
+          <button type="button" title="View Details" class="btn btn-link px-2 ml-2" (click)="viewFunc(data)"><i class="fa fa-eye"
+              aria-hidden="true"></i>
+          </button>
+
+          <button type="button" title="Remove from List" class="btn btn-link px-2 ml-2"><i class="fa fa-trash-o"
+              aria-hidden="true"></i>
+          </button>
+        </td>
+      </tr>
+      <tr *ngIf="allEventList.length == 0">
+        <td colspan="6" class="text-center">
+          <h6 class="p-5">No data found</h6>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- <fa-icon [icon]="faCoffee"></fa-icon> -->
+
+</div>

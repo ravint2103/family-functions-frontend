@@ -1,0 +1,35 @@
+<h5 class="my-3"><span *ngIf="detailOFAmount">{{detailOFAmount.Name}} - </span>Details
+  <button type="button" class="btn btn-primary float-right px-4 mb-3" (click)="goBack();">Back</button>
+</h5>
+<div class="table-responsive">
+  <!-- <pre>
+        {{detailOFAmount | json}}
+    </pre> -->
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Address</th>
+        <th>Name</th>
+        <th>Amount</th>
+        <th>Credit</th>
+        <th>Debit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="detailOFAmount">
+        <td>{{detailOFAmount._id}}</td>
+        <td>{{detailOFAmount.Address}}</td>
+        <td>{{detailOFAmount.Name}}</td>
+        <td>{{detailOFAmount.Amount}}</td>
+        <td>{{detailOFAmount.Credit}}</td>
+        <td>{{detailOFAmount.Debit}}</td>
+      </tr>
+      <tr *ngIf="!detailOFAmount">
+        <td colspan="4" class="text-center">
+          <h6 class="p-5">No data found</h6>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

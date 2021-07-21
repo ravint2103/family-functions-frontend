@@ -1,0 +1,68 @@
+<h5 class="my-3">Event Details
+  <button type="button" class="btn btn-primary float-right px-4 mb-3" data-toggle="modal"
+    data-target="#addAmountModal">Add</button>
+  <button type="button" class="btn btn-primary float-right px-4 mb-3 mr-2" (click)="gotoBack()">Back</button>
+</h5>
+<div class="table-responsive">
+  <!-- <pre>
+        {eventData | json}
+    </pre> -->
+  <table class="table table-bordered table-sm" *ngIf="!specificEventData">
+    <thead>
+      <tr>
+        <th width="10">#</th>
+        <th width="35">Address</th>
+        <th width="35">Name</th>
+        <th width="10">Amount (Rs)</th>
+        <th width="10" class="text-center">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of eventData">
+        <td>{{data._id}}</td>
+        <td>{{data.Address}}</td>
+        <!-- <td><a (click)="viewDetail(data.id)" class="font-weight-bold">{{data.Name}}</a></td> -->
+        <td><a class="font-weight-bold">{{data.Name}}</a></td>
+        <td>{{data.Amount}}</td>
+        <td class="text-center">
+          hh
+        </td>
+      </tr>
+      <tr *ngIf="eventData.length == 0">
+        <td colspan="5" class="text-center">
+          <h6 class="p-5">No data found</h6>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <table class="table table-bordered table-sm" *ngIf="specificEventData">
+    <thead>
+      <tr>
+        <th width="35">Address</th>
+        <th width="35">Name</th>
+        <th width="10">Amount (Rs)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of specificEventData">
+        <td>{{data.FunctionAddress}}</td>
+        <td><a class="font-weight-bold">{{data.FunctionName}}</a></td>
+        <td>
+          <span class="label label-danger" *ngIf="data.Status==-1">Cancelled</span>
+          <span class="label label-primary" *ngIf="data.Status==0">Booked</span>
+          <span class="label label-success" *ngIf="data.Status==1">Completed</span>
+          <span class="label label-warning" *ngIf="data.Status==2">Waiting</span>
+        </td>
+      </tr>
+      <tr *ngIf="specificEventData.length == 0">
+        <td colspan="3" class="text-center">
+          <h6 class="p-5">No data found</h6>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+</div>
